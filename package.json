@@ -1,0 +1,25 @@
+{
+  "name": "validate-noddity-post",
+  "version": "1.0.0",
+  "description": "Assert that a Noddity post file can be parsed by the butler, and rendered by Ractive.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TehShrike/validate-noddity-post.git"
+  },
+  "keywords": [
+    "noddity",
+    "lint",
+    "test",
+    "assert"
+  ],
+  "author": "TehShrike",
+  "license": "WTFPL",
+  "bugs": {
+    "url": "https://github.com/TehShrike/validate-noddity-post/issues"
+  },
+  "homepage": "https://github.com/TehShrike/validate-noddity-post#readme"
+}
