@@ -21,5 +21,25 @@
   "bugs": {
     "url": "https://github.com/TehShrike/validate-noddity-post/issues"
   },
-  "homepage": "https://github.com/TehShrike/validate-noddity-post#readme"
+  "homepage": "https://github.com/TehShrike/validate-noddity-post#readme",
+  "devDependencies": {
+    "level-mem": "0.18.0",
+    "noddity-butler": "2.6.0",
+    "noddity-fs-retrieval": "1.1.0",
+    "noddity-linkifier": "2.2.1",
+    "tape": "4.6.2"
+  },
+  "dependencies": {
+    "noddity-render-static": "2.2.3"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "presets": "es2015"
+        }
+      ]
+    ]
+  }
 }
