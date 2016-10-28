@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/TehShrike/validate-noddity-post#readme",
   "devDependencies": {
+    "babel-preset-es2015": "6.18.0",
+    "babelify": "7.3.0",
     "level-mem": "0.18.0",
     "noddity-butler": "2.6.0",
     "noddity-fs-retrieval": "1.1.0",
