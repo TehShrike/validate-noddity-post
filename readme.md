@@ -20,9 +20,11 @@ If the promise is rejected, then something is wrong with the universe, which is 
 # Example
 
 ```js
-validate('my-newest-post.md').then(err => {
-	if (err) {
-		console.log('your post sucks!', err)
+validate('my-newest-post.md').then({ error, html } => {
+	if (error) {
+		console.log('your post sucks!', error)
+	} else {
+		console.log('the post html is', html)
 	}
 })
 ```
