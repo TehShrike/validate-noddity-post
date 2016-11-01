@@ -1,11 +1,11 @@
 const staticRenderer = require('noddity-render-static')
 
-const templatePost = Object.freeze({
+const defaultTemplatePost = Object.freeze({
 	metadata: {},
 	content: '{{>current}}'
 })
 
-module.exports = function({ butler, linkifier, data }) {
+module.exports = function({ butler, linkifier, data, template = defaultTemplatePost }) {
 	const renderOptions = {
 		butler,
 		linkifier,
@@ -14,17 +14,35 @@ module.exports = function({ butler, linkifier, data }) {
 
 	return function validate(post) {
 		return validateDateOnPostAsStringOrObject(butler, post).then(error => {
-			return error || postRenders(butler, post, renderOptions)
+			if (error) {
+				return { error }
+			}
+
+			return postRenders(template, post, renderOptions)
 		})
 	}
 }
 
+function postRenders(template, post, renderOptions) {
+	return new Promise((resolve, reject) => {
+		staticRenderer(template, post, renderOptions, (error, html) => {
+			if (error) {
+				return resolve({ error })
+			}
+
+			return resolve({ html })
+		})
+	})
+}
+
+
+
 function validateDateOnPostAsStringOrObject(butler, post) {
 	return new Promise((resolve, reject) => {
 		if (typeof post === 'string') {
-			butler.getPost(post, (err, post) => {
-				if (err) {
-					resolve(err)
+			butler.getPost(post, (error, post) => {
+				if (error) {
+					resolve(error)
 				} else {
 					resolve(validateMetadata(post))
 				}
@@ -42,18 +60,6 @@ function validateMetadata(post) {
 		} else {
 			resolve()
 		}
-	})
-}
-
-function postRenders(butler, post, renderOptions) {
-	return new Promise((resolve, reject) => {
-		staticRenderer(templatePost, post, renderOptions, (err, html) => {
-			if (err) {
-				return resolve(err)
-			}
-
-			return resolve()
-		})
 	})
 }
 
