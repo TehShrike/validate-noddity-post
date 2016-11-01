@@ -11,7 +11,18 @@ const validate = Validator({
 })
 ```
 
-## validate(post)
+`require` returns a constructor function:
+
+## constructor({ butler, linkifier, data, [template] })
+
+- butler: a [noddity-butler](https://github.com/TehShrike/noddity-butler)
+- linkifier: [noddity-linkifier](https://github.com/TehShrike/noddity-linkifier)
+- data: passed to [noddity-render-static](https://github.com/TehShrike/noddity-render-static)
+- template: an optional post template
+
+The constructor function returns a validator function:
+
+## validator function(post)
 
 Returns a promise that resolves with `undefined` if everything is cool, and with a truthy error object if there is anything wrong with the post.
 
