@@ -1,6 +1,6 @@
 {
   "name": "validate-noddity-post",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Assert that a Noddity post file can be parsed by the butler, and rendered by Ractive.",
   "main": "index.js",
   "scripts": {
