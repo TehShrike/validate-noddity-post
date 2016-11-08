@@ -56,7 +56,7 @@ function validateDateOnPostAsStringOrObject(butler, post) {
 function validateMetadata(post) {
 	return new Promise((resolve, reject) => {
 		if (!post.metadata.date || !dateIsValid(post.metadata.date)) {
-			resolve(new Error(`Invalid date in ${post.filename}`))
+			resolve(new Error(`Invalid date`))
 		} else {
 			resolve()
 		}
