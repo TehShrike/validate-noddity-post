@@ -25,12 +25,12 @@ module.exports = function({ butler, linkifier, data, template = defaultTemplateP
 
 function postRenders(template, post, renderOptions) {
 	return new Promise((resolve, reject) => {
-		staticRenderer(template, post, renderOptions, (error, html) => {
+		staticRenderer(template, post, renderOptions, (error) => {
 			if (error) {
 				return resolve({ error })
 			}
 
-			return resolve({ html })
+			return resolve({})
 		})
 	})
 }

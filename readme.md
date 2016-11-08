@@ -24,18 +24,16 @@ The constructor function returns a validator function:
 
 ## validator function(post)
 
-Returns a promise that resolves with `undefined` if everything is cool, and with a truthy error object if there is anything wrong with the post.
+Returns a promise that resolves with an object. If there is anything wrong with the post it will have an `error` property.
 
 If the promise is rejected, then something is wrong with the universe, which is a distinct possibility when you're interacting with physical disks and internets and whatnot.
 
 # Example
 
 ```js
-validate('my-newest-post.md').then({ error, html } => {
+validate('my-newest-post.md').then(({ error }) => {
 	if (error) {
 		console.log('your post sucks!', error)
-	} else {
-		console.log('the post html is', html)
 	}
 })
 ```
