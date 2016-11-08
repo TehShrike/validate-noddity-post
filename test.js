@@ -6,6 +6,8 @@ const Linkifier = require('noddity-linkifier')
 
 const Validator = require('./')
 
+require('ractive').DEBUG = false
+
 function createTestValidator(data = {}, template) {
 	const db = levelmem('wat')
 	const retrieval = new Retrieval('./test-fixtures/')
