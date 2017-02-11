@@ -2,6 +2,8 @@ Validate noddity posts so that you can be guaranteed that their metadata is vali
 
 # API
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/TehShrike/validate-noddity-post.svg)](https://greenkeeper.io/)
+
 ```js
 const Validator = require('validate-noddity-post')
 const validate = Validator({
