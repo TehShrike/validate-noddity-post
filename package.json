@@ -32,7 +32,7 @@
     "tape": "4.9.0"
   },
   "dependencies": {
-    "noddity-render-static": "2.4.3"
+    "noddity-render-static": "3.0.1"
   },
   "browserify": {
     "transform": [
