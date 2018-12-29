@@ -29,7 +29,7 @@
     "noddity-butler": "2.6.2",
     "noddity-fs-retrieval": "1.1.0",
     "noddity-linkifier": "3.0.0",
-    "tape": "4.9.1"
+    "tape": "4.9.2"
   },
   "dependencies": {
     "noddity-render-static": "2.4.3"
