@@ -1,64 +1,64 @@
-const test = require('tape')
-const Butler = require('noddity-butler')
-const levelmem = require('level-mem')
-const Retrieval = require('noddity-fs-retrieval')
-const Linkifier = require('noddity-linkifier')
+const test = require(`tape`)
+const Butler = require(`noddity-butler`)
+const levelmem = require(`level-mem`)
+const Retrieval = require(`noddity-fs-retrieval`)
+const Linkifier = require(`noddity-linkifier`)
 
-const Validator = require('./')
+const Validator = require(`./`)
 
-require('ractive').DEBUG = false
+require(`ractive`).DEBUG = false
 
 function createTestValidator(data = {}, template) {
-	const db = levelmem('wat')
-	const retrieval = new Retrieval('./test-fixtures/')
+	const db = levelmem(`wat`)
+	const retrieval = new Retrieval(`./test-fixtures/`)
 	const butler = new Butler(retrieval, db)
-	const linkifier = new Linkifier('/whatever/')
+	const linkifier = new Linkifier(`/whatever/`)
 
 	return Validator({
 		butler,
 		linkifier,
 		data,
-		template
+		template,
 	})
 }
 
-test('valid file', t => {
+test(`valid file`, t => {
 	const validate = createTestValidator()
-	validate('totally-valid.md').then(({ error }) => {
+	validate(`totally-valid.md`).then(({ error }) => {
 		t.notOk(error)
 		// t.equal(typeof html, 'string')
 		t.end()
 	}).catch(t.fail.bind(t))
 })
 
-test('invalid html', t => {
+test(`invalid html`, t => {
 	const validate = createTestValidator()
-	validate('invalid-html.md').then(({ error }) => {
+	validate(`invalid-html.md`).then(({ error }) => {
 		t.ok(error)
 		t.end()
 	}).catch(t.fail.bind(t))
 })
 
-test('invalid metadata', t => {
+test(`invalid metadata`, t => {
 	const validate = createTestValidator({
-		date: 'date',
-		boolean: 'markdown'
+		date: `date`,
+		boolean: `markdown`,
 	})
 
-	validate('invalid-date.md').then(({ error }) => {
+	validate(`invalid-date.md`).then(({ error }) => {
 		t.ok(error)
 		t.end()
 	}).catch(t.fail.bind(t))
 })
 
-test('invalid html in an embedded template', t => {
+test(`invalid html in an embedded template`, t => {
 	const validate = createTestValidator()
 	validate({
 		metadata: {
-			date: new Date('2016-10-26T23:49:53.211Z')
+			date: new Date(`2016-10-26T23:49:53.211Z`),
 		},
 		content: `and then ::invalid-html.md::`,
-		filename: 'dummy.md'
+		filename: `dummy.md`,
 	}).then(({ error }) => {
 		t.ok(error)
 
@@ -66,16 +66,16 @@ test('invalid html in an embedded template', t => {
 	}).catch(t.fail.bind(t))
 })
 
-test('invalid embedded template file name', t => {
+test(`invalid embedded template file name`, t => {
 	const validate = createTestValidator()
 	validate({
 		metadata: {
-			date: new Date('2016-10-26T23:49:53.211Z')
+			date: new Date(`2016-10-26T23:49:53.211Z`),
 		},
 		content: `and then ::invalid-butts::`,
-		filename: 'dummy.md'
+		filename: `dummy.md`,
 	}).then(({ error }) => {
-		t.equal(error.code, 'ENOENT')
+		t.equal(error.code, `ENOENT`)
 		t.ok(error)
 		t.end()
 	}).catch(t.fail.bind(t))

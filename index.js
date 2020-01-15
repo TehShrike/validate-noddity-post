@@ -1,15 +1,15 @@
-const staticRenderer = require('noddity-render-static')
+const staticRenderer = require(`noddity-render-static`)
 
 const defaultTemplatePost = Object.freeze({
 	metadata: {},
-	content: '{{>current}}'
+	content: `{{>current}}`,
 })
 
-module.exports = function({ butler, linkifier, data, template = defaultTemplatePost }) {
+module.exports = ({ butler, linkifier, data, template = defaultTemplatePost }) => {
 	const renderOptions = {
 		butler,
 		linkifier,
-		data
+		data,
 	}
 
 	return function validate(post) {
@@ -25,7 +25,7 @@ module.exports = function({ butler, linkifier, data, template = defaultTemplateP
 
 function postRenders(template, post, renderOptions) {
 	return new Promise((resolve, reject) => {
-		staticRenderer(template, post, renderOptions, (error) => {
+		staticRenderer(template, post, renderOptions, error => {
 			if (error) {
 				return resolve({ error })
 			}
@@ -39,7 +39,7 @@ function postRenders(template, post, renderOptions) {
 
 function validateDateOnPostAsStringOrObject(butler, post) {
 	return new Promise((resolve, reject) => {
-		if (typeof post === 'string') {
+		if (typeof post === `string`) {
 			butler.getPost(post, (error, post) => {
 				if (error) {
 					resolve(error)
@@ -68,7 +68,7 @@ function dateIsValid(date) {
 }
 
 function dateIsInValidRange(date) {
-	const earliestDate = new Date('1975-01-01')
-	const latestDate = new Date('2020-01-01')
+	const earliestDate = new Date(`1975-01-01`)
+	const latestDate = new Date(`2100-01-01`)
 	return date > earliestDate && date < latestDate
 }
