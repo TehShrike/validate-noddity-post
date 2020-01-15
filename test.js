@@ -47,6 +47,7 @@ test(`invalid metadata`, t => {
 
 	validate(`invalid-date.md`).then(({ error }) => {
 		t.ok(error)
+		t.equal(error.message, `Invalid date`)
 		t.end()
 	}).catch(t.fail.bind(t))
 })

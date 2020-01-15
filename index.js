@@ -64,11 +64,5 @@ function validateMetadata(post) {
 }
 
 function dateIsValid(date) {
-	return date instanceof Date && isFinite(date) && dateIsInValidRange(date)
-}
-
-function dateIsInValidRange(date) {
-	const earliestDate = new Date(`1975-01-01`)
-	const latestDate = new Date(`2100-01-01`)
-	return date > earliestDate && date < latestDate
+	return date instanceof Date && isFinite(date)
 }
